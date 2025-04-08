@@ -18,8 +18,8 @@
 // Flexbox mixins
 .flex-center() {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .flex-between() {
@@ -47,10 +47,10 @@
 // Button mixins
 .button() {
     display: inline-block;
-    padding: @spacing[sm] @spacing[lg];
-    border-radius: 30px;
+    padding: extract(@spacing, sm) extract(@spacing, md);
+    border-radius: 6px;
     text-decoration: none;
-    transition: all @animations[duration] @animations[timing];
+    .transition();
 }
 
 .button-primary() {
@@ -91,5 +91,52 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.transition(@property: all, @duration: 0.3s) {
+    transition: @property @duration ease;
+}
+
+.container() {
+    max-width: extract(@breakpoints, desktop);
+    margin: 0 auto;
+    padding: 0 extract(@spacing, md);
+}
+
+.hover-transform() {
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.grid-responsive(@min-width: 300px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(@min-width, 1fr));
+    gap: extract(@spacing, xlarge);
+}
+
+.link-hover() {
+    &:hover {
+        color: extract(@colors, primary);
+    }
+}
+
+.fade-in-animation() {
+    animation: fadeIn 1s ease-out;
+}
+
+// Media query mixin with escaping
+.media-tablet(@content) {
+    @media ~"(max-width: @{breakpoints[tablet]})" {
+        @content();
+    }
+}
+
+// Mixin para media queries com escaping
+.media(@breakpoint) {
+    @media ~"(max-width: @{breakpoints[@{breakpoint}]})" {
+        @content();
     }
 } 
