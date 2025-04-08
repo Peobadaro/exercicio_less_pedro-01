@@ -1,3 +1,6 @@
+// Importa variáveis
+@import "variables.less";
+
 // Media queries with escaping
 @mobile: ~"(max-width: @{breakpoints[mobile]})";
 @tablet: ~"(max-width: @{breakpoints[tablet]})";
@@ -47,10 +50,17 @@
 // Button mixins
 .button() {
     display: inline-block;
-    padding: extract(@spacing, sm) extract(@spacing, md);
-    border-radius: 6px;
+    background-color: extract(@colors, primary);
+    color: extract(@colors, white);
+    padding: extract(@spacing, sm) extract(@spacing, lg);
+    border-radius: extract(@radius, rounded);
     text-decoration: none;
+    font-weight: 500;
     .transition();
+
+    &:hover {
+        background-color: extract(@colors, primary-hover);
+    }
 }
 
 .button-primary() {
@@ -66,21 +76,20 @@
 
 // Card mixins
 .card() {
-    background: @colors[background];
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all @animations[duration] @animations[timing];
-    
+    background: extract(@colors, white);
+    border-radius: extract(@radius, default);
+    box-shadow: extract(@shadows, sm);
+    .transition();
+
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: extract(@shadows, lg);
     }
 }
 
 // Animation mixins
 .fade-in() {
-    animation: fadeIn 1s ease-out;
+    animation: fadeIn extract(@transitions, duration) extract(@transitions, timing);
 }
 
 @keyframes fadeIn {
@@ -94,8 +103,8 @@
     }
 }
 
-.transition(@property: all, @duration: 0.3s) {
-    transition: @property @duration ease;
+.transition(@property: all) {
+    transition: @property extract(@transitions, duration) extract(@transitions, timing);
 }
 
 .container() {
@@ -111,10 +120,10 @@
     }
 }
 
-.grid-responsive(@min-width: 300px) {
+.grid-responsive(@min-width: 300px, @gap: extract(@spacing, xl)) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(@min-width, 1fr));
-    gap: extract(@spacing, xlarge);
+    gap: @gap;
 }
 
 .link-hover() {
