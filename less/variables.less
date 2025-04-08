@@ -1,41 +1,62 @@
 // Colors
 @colors: {
-    primary: #182C61;
-    secondary: #44bd32;
-    secondary-hover: #4cd137;
-    background: #f5f6fa;
+    primary: #0071e3;
+    primary-hover: #0077ed;
     text: #1d1d1f;
-    white: #ffffff;
+    text-light: #86868b;
+    background: #ffffff;
+    background-alt: #f5f5f7;
+    border: #d2d2d7;
 };
 
 // Typography
 @typography: {
-    family: Roboto, sans-serif;
+    family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     sizes: {
+        xs: 12px;
+        sm: 14px;
         base: 16px;
-        small: 14px;
-        large: 21px;
+        lg: 21px;
+        xl: 24px;
+        xxl: 28px;
+        hero: 56px;
     };
     weights: {
         normal: 400;
-        bold: 700;
+        medium: 500;
+        semibold: 600;
     };
-};
-
-// Breakpoints
-@breakpoints: {
-    mobile: 767px;
-    tablet: 1023px;
-    desktop: 1024px;
 };
 
 // Spacing
 @spacing: {
-    xs: 8px;
-    sm: 16px;
-    md: 24px;
-    lg: 32px;
-    xl: 56px;
+    xs: 5px;
+    sm: 10px;
+    base: 15px;
+    md: 20px;
+    lg: 30px;
+    xl: 40px;
+    xxl: 60px;
+    hero: 100px;
+};
+
+// Breakpoints
+@breakpoints: {
+    mobile: 768px;
+    tablet: 1024px;
+    desktop: 1200px;
+};
+
+// Z-index
+@z-index: {
+    header: 1000;
+    modal: 2000;
+};
+
+// Animations
+@animations: {
+    duration: 0.3s;
+    timing: ease;
 };
 
 // Grid
