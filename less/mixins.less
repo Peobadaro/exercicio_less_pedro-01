@@ -1,12 +1,15 @@
-// Media queries
+// Media queries with escaping
+@mobile: ~"(max-width: @{breakpoints[mobile]})";
+@tablet: ~"(max-width: @{breakpoints[tablet]})";
+
 .mobile(@rules) {
-    @media screen and (max-width: @breakpoint-mobile) {
+    @media screen and @mobile {
         @rules();
     }
 }
 
 .tablet(@rules) {
-    @media screen and (max-width: @breakpoint-tablet) {
+    @media screen and @tablet {
         @rules();
     }
 }
@@ -26,30 +29,30 @@
 
 // Typography
 .text-small() {
-    font-size: @font-size-small;
-    color: @text-color-light;
+    font-size: @typography[sizes][small];
+    color: @colors[text];
 }
 
 .text-large() {
-    font-size: @font-size-large;
-    color: @text-color;
+    font-size: @typography[sizes][large];
+    color: @colors[text];
 }
 
 // Buttons
 .button() {
     display: inline-block;
-    padding: @spacing-xs @spacing-md;
-    border-radius: @border-radius-small;
+    padding: @spacing[xs] @spacing[md];
+    border-radius: @border-radius[small];
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .button-primary() {
     .button();
-    background-color: @accent-color;
-    color: @white;
+    background-color: @colors[secondary];
+    color: @colors[white];
     
     &:hover {
-        background-color: darken(@accent-color, 10%);
+        background-color: @colors[secondary-hover];
     }
 } 
